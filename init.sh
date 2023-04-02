@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+rm ~/.bashrc -f
 sudo pacman -Suy \
   make \
   ansible \
