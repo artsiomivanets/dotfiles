@@ -22,6 +22,7 @@ sudo pacman --needed -Suy \
   npm \
   yarn \
   tar \
+  postgresql \
   telegram-desktop \
   --noconfirm
 yay -S asdf-vm slack-desktop google-chrome --noconfirm
