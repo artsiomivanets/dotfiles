@@ -13,3 +13,4 @@ sudo pacman -Suy \
   curl \
   alacritty \
   --noconfirm
+sudo pamac build asdf-vm --no-confirm
