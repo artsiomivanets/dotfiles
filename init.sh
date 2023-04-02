@@ -6,5 +6,6 @@ sudo pacman -Suy \
   neovim \
   xclip \
   stow \
+  tmux \
   alacritty \
   --noconfirm
