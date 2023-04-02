@@ -1,5 +1,5 @@
 apply:
-	stow --target=$$(echo $$HOME) */
+	stow --restow --target=$$(echo $$HOME) */
 
 delete:
 	stow --delete --target=$$(echo $$HOME) */ 
