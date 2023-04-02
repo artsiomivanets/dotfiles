@@ -15,6 +15,13 @@ sudo pacman --needed -Suy \
   alacritty \
   ruby \
   nodejs \
+  ripgrep \
+  fd \
+  zip \
+  unzip \
+  npm \
+  yarn \
+  tar \
   telegram-desktop \
   --noconfirm
 yay -S asdf-vm slack-desktop google-chrome --noconfirm
