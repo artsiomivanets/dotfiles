@@ -7,5 +7,6 @@ sudo pacman -Suy \
   xclip \
   stow \
   tmux \
+  fzf \
   alacritty \
   --noconfirm
