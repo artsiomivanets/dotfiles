@@ -1,1 +1,1 @@
-setxkbmap -option "ctrl:swapcaps" -option "grp:ctrl_space_toggle"
+setxkbmap -layout us,ru -option "ctrl:swapcaps" -option "grp:ctrl_space_toggle"

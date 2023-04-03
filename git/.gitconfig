@@ -1,0 +1,7 @@
+[user]
+	name = artsiomivanets
+	email = artem.ivanec96@gmail.com
+
+[push]
+  autoSetupRemote = true
+
