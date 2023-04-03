@@ -1,1 +1,7 @@
+flameshot &
+telegram-desktop &
+slack &
+google-chrome-stable &
+alacritty &
+
 setxkbmap -layout us,ru -option "ctrl:swapcaps" -option "grp:ctrl_space_toggle"

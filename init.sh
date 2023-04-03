@@ -26,6 +26,7 @@ sudo pacman --needed -Suy \
   telegram-desktop \
   bash-completion \
   psensor \
+  flameshot \
   --noconfirm
 yay -S asdf-vm slack-desktop google-chrome --noconfirm
 make apply
