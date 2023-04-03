@@ -25,6 +25,7 @@ sudo pacman --needed -Suy \
   postgresql \
   telegram-desktop \
   bash-completion \
+  psensor \
   --noconfirm
 yay -S asdf-vm slack-desktop google-chrome --noconfirm
 make apply
