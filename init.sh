@@ -27,6 +27,7 @@ sudo pacman --needed -Suy \
   bash-completion \
   psensor \
   flameshot \
+  docker \
   aws-cli \
   --noconfirm
 yay -S asdf-vm slack-desktop google-chrome --noconfirm
