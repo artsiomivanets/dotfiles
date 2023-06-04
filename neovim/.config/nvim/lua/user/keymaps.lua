@@ -54,7 +54,7 @@ keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
 -- FZF --
 keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
-keymap("n", "<leader>fa", ":FzfLua grep_project<CR>", opts)
+keymap("n", "<leader>fa", ":lua require('fzf-lua').grep({ search = '' })<CR>", opts)
 keymap("n", "<leader>b", ":FzfLua buffers<CR>", opts)
 
 -- NvimTREE --
