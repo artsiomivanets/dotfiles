@@ -85,6 +85,8 @@ return require('packer').startup(function(use)
   --DiffView
   use { 'sindrets/diffview.nvim' }
 
+  use { 'RRethy/nvim-treesitter-endwise' }
+
   if packer_bootstrap then
     require('packer').sync()
   end
