@@ -30,7 +30,7 @@ sudo pacman --needed -Suy \
   docker \
   aws-cli \
   --noconfirm
-yay -S asdf-vm slack-desktop google-chrome --noconfirm
+yay -S asdf-vm slack-desktop google-chrome tidy jq --noconfirm
 make apply
 git clone https://github.com/magicmonty/bash-git-prompt.git ~/.bash-git-prompt --depth=1
 sudo usermod -aG docker ${USER}

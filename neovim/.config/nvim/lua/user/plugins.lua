@@ -82,10 +82,13 @@ return require('packer').startup(function(use)
   -- Git
   use { 'lewis6991/gitsigns.nvim' }
 
-  --DiffView
+  -- DiffView
   use { 'sindrets/diffview.nvim' }
 
   use { 'RRethy/nvim-treesitter-endwise' }
+
+  -- REST
+  use { "rest-nvim/rest.nvim" }
 
   if packer_bootstrap then
     require('packer').sync()

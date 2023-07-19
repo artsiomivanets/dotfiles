@@ -65,3 +65,5 @@ keymap("n", "<C-m>", ":NvimTreeFindFile<CR>", opts)
 keymap("n", "<leader>do", ":DiffviewFileHistory<CR>", opts)
 keymap("n", "<leader>dc", ":DiffviewClose<CR>", opts)
 
+-- Rest
+keymap("n", "<leader>r", "<Plug>RestNvim", opts)
