@@ -1,7 +1,6 @@
 require'fzf-lua'.setup {
   files = {
-    prompt = 'Files> ',
-    cmd = "fd -H -E .git"
+    fd_opts = "--no-ignore -E .git -E node_modules -E public"
   },
   winopts = {
     on_create = function()
