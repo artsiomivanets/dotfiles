@@ -3,11 +3,13 @@ local servers = {
 	"tsserver",
   "solargraph",
   "tailwindcss",
+  "clangd",
 }
 
 local tools = {
   "prettier",
   "rubocop",
+  "clang-format",
 }
 
 return {
