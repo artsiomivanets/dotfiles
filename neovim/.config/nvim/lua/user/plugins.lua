@@ -54,7 +54,8 @@ return require('packer').startup(function(use)
   }
 
   -- NULL-LS
-  use { "jose-elias-alvarez/null-ls.nvim", requires = { "nvim-lua/plenary.nvim" } }
+  use "nvimtools/none-ls.nvim"
+
 
   -- TreeSitter
   use { "nvim-treesitter/nvim-treesitter", run = ':TSUpdate' }
@@ -88,7 +89,10 @@ return require('packer').startup(function(use)
   use { 'RRethy/nvim-treesitter-endwise' }
 
   -- REST
-  use { "rest-nvim/rest.nvim" }
+  -- use {
+  --   "rest-nvim/rest.nvim",
+  --   rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
+  -- }
 
   if packer_bootstrap then
     require('packer').sync()
