@@ -1,7 +1,7 @@
 return {
   {
     "kylechui/nvim-surround",
-    tag = "*", -- pinned for stability
+    version = "*", -- latest stable release (lazy semver)
     event = "VeryLazy",
     config = function()
       require("nvim-surround").setup()

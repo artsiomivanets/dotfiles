@@ -5,7 +5,7 @@ return {
     { "mason-org/mason.nvim", config = true },
     "mason-org/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    "hrsh7th/cmp-nvim-lsp",
+    "saghen/blink.cmp",
   },
   config = function()
     local names = require("user.lsp.tool_names")
@@ -20,7 +20,7 @@ return {
 
     -- Global defaults merged into every server (Nvim 0.11+ native API)
     vim.lsp.config("*", {
-      capabilities = require("cmp_nvim_lsp").default_capabilities(),
+      capabilities = require("blink.cmp").get_lsp_capabilities(),
     })
 
     -- Per-server overrides from lua/user/lsp/server_configs/<name>.lua
@@ -31,6 +31,11 @@ return {
       end
     end
 
+    -- RuboCop's built-in LSP (`rubocop --lsp`) surfaces offenses as diagnostics.
+    -- mason-lspconfig has no server mapping for it, so enable it explicitly.
+    -- The binary is installed via mason-tool-installer (see tool_names.tools).
+    vim.lsp.enable("rubocop")
+
     -- Diagnostics
     vim.diagnostic.config({
       virtual_text = false,
@@ -39,10 +44,10 @@ return {
       severity_sort = true,
       signs = {
         text = {
-          [vim.diagnostic.severity.ERROR] = "",
-          [vim.diagnostic.severity.WARN] = "",
-          [vim.diagnostic.severity.HINT] = "",
-          [vim.diagnostic.severity.INFO] = "",
+          [vim.diagnostic.severity.ERROR] = " ",
+          [vim.diagnostic.severity.WARN] = " ",
+          [vim.diagnostic.severity.HINT] = " ",
+          [vim.diagnostic.severity.INFO] = " ",
         },
       },
       float = {
@@ -58,8 +63,8 @@ return {
     -- Diagnostic navigation (global)
     local opts = { noremap = true, silent = true }
     vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-    vim.keymap.set("n", "[r", function() vim.diagnostic.jump({ count = -1 }) end, opts)
-    vim.keymap.set("n", "]r", function() vim.diagnostic.jump({ count = 1 }) end, opts)
+    vim.keymap.set("n", "[r", function() vim.diagnostic.jump({ count = -1, float = true }) end, opts)
+    vim.keymap.set("n", "]r", function() vim.diagnostic.jump({ count = 1, float = true }) end, opts)
     vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
     -- Buffer-local LSP mappings on attach

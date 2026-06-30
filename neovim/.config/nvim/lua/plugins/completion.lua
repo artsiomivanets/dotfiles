@@ -1,132 +1,78 @@
 return {
-  "hrsh7th/nvim-cmp",
-  event = { "InsertEnter", "CmdlineEnter" },
+  "saghen/blink.cmp",
+  version = "1.*", -- downloads the prebuilt Rust fuzzy-matcher (no cargo needed)
   dependencies = {
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-nvim-lsp",
     "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
+    "rafamadriz/friendly-snippets",
   },
-  config = function()
-    local cmp = require("cmp")
-    local luasnip = require("luasnip")
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    snippets = { preset = "luasnip" },
 
-    local check_backspace = function()
-      local col = vim.fn.col "." - 1
-      return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-    end
+    -- Ported 1:1 from the old nvim-cmp mappings
+    keymap = {
+      preset = "none",
+      ["<C-k>"] = { "select_prev", "fallback" },
+      ["<C-p>"] = { "select_prev", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
+      ["<C-b>"] = { "scroll_documentation_up", "fallback" },
+      ["<C-f>"] = { "scroll_documentation_down", "fallback" },
+      ["<C-Space>"] = { "show", "fallback" },
+      ["<C-e>"] = { "cancel", "fallback" },
+      ["<CR>"] = { "accept", "fallback" },
+      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
+    },
 
-    --   פּ ﯟ   some other good icons
-    local kind_icons = {
-      Text = "",
-      Method = "m",
-      Function = "",
-      Constructor = "",
-      Field = "",
-      Variable = "",
-      Class = "",
-      Interface = "",
-      Module = "",
-      Property = "",
-      Unit = "",
-      Value = "",
-      Enum = "",
-      Keyword = "",
-      Snippet = "",
-      Color = "",
-      File = "",
-      Reference = "",
-      Folder = "",
-      EnumMember = "",
-      Constant = "",
-      Struct = "",
-      Event = "",
-      Operator = "",
-      TypeParameter = "",
-    }
-    -- find more here: https://www.nerdfonts.com/cheat-sheet
-
-    cmp.setup {
-      snippet = {
-        expand = function(args)
-          luasnip.lsp_expand(args.body) -- For `luasnip` users.
-        end,
+    appearance = {
+      nerd_font_variant = "mono",
+      -- Kind icons carried over from the old config
+      kind_icons = {
+        Text = "",
+        Method = "m",
+        Function = "",
+        Constructor = "",
+        Field = "",
+        Variable = "",
+        Class = "",
+        Interface = "",
+        Module = "",
+        Property = "",
+        Unit = "",
+        Value = "",
+        Enum = "",
+        Keyword = "",
+        Snippet = "",
+        Color = "",
+        File = "",
+        Reference = "",
+        Folder = "",
+        EnumMember = "",
+        Constant = "",
+        Struct = "",
+        Event = "",
+        Operator = "",
+        TypeParameter = "",
       },
-      mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-y>"] = cmp.config.disable,
-        ["<C-e>"] = cmp.mapping {
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close(),
+    },
+
+    completion = {
+      documentation = { auto_show = true, auto_show_delay_ms = 200 },
+      menu = {
+        draw = {
+          -- show source label, matching the old [LSP]/[Snippet]/[Buffer]/[Path]
+          columns = { { "kind_icon" }, { "label", "label_description", gap = 1 }, { "source_name" } },
         },
-        ["<CR>"] = cmp.mapping.confirm { select = true },
-        ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_next_item()
-          elseif luasnip.expandable() then
-            luasnip.expand()
-          elseif luasnip.expand_or_jumpable() then
-            luasnip.expand_or_jump()
-          elseif check_backspace() then
-            fallback()
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
-            cmp.select_prev_item()
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
-          else
-            fallback()
-          end
-        end, {
-          "i",
-          "s",
-        }),
       },
-      formatting = {
-        fields = { "kind", "abbr", "menu" },
-        format = function(entry, vim_item)
-          vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-          vim_item.menu = ({
-            nvim_lsp = "[LSP]",
-            luasnip = "[Snippet]",
-            buffer = "[Buffer]",
-            path = "[Path]",
-          })[entry.source.name]
-          return vim_item
-        end,
-      },
-      sources = {
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path" },
-      },
-      confirm_opts = {
-        behavior = cmp.ConfirmBehavior.Replace,
-        select = false,
-      },
-      window = {
-        documentation = cmp.config.window.bordered(),
-      },
-      experimental = {
-        ghost_text = false,
-        native_menu = false,
-      },
-    }
-  end,
+    },
+
+    sources = {
+      default = { "lsp", "snippets", "buffer", "path" },
+    },
+
+    fuzzy = { implementation = "prefer_rust_with_warning" },
+  },
+  opts_extend = { "sources.default" },
 }
