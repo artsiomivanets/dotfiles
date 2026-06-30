@@ -1,17 +1,20 @@
+-- Core (load before plugins so leader/options are set first)
 require "user.options"
 require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.cmp"
-require "user.lsp"
-require "user.fzf"
-require "user.nvimtree"
-require "user.treesitter"
-require "user.null-ls"
-require "user.nvim-surround"
-require "user.autopairs"
-require "user.comments"
-require "user.statusline"
-require "user.illuminate"
-require "user.git"
--- require "user.rest"
+
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none", "--branch=stable",
+    "https://github.com/folke/lazy.nvim.git", lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  spec = { { import = "plugins" } },
+  install = { colorscheme = { "gruvbox" } },
+  checker = { enabled = false },
+  change_detection = { notify = false },
+})

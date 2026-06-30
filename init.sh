@@ -7,6 +7,7 @@ sudo pacman --needed -Suy \
   yay \
   ansible \
   neovim \
+  tree-sitter-cli \
   xclip \
   stow \
   tmux \

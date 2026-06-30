@@ -7,6 +7,7 @@ local servers = {
 }
 
 local tools = {
+  "stylua",
   "prettier",
   "rubocop",
   "clang-format",

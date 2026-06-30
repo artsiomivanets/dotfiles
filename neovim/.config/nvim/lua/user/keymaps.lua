@@ -52,18 +52,6 @@ keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
 keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
 keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
--- FZF --
-keymap("n", "<leader>ff", ":FzfLua files<CR>", opts)
-keymap("n", "<leader>fa", ":lua require('fzf-lua').grep({ search = '' })<CR>", opts)
-keymap("n", "<leader>b", ":FzfLua buffers<CR>", opts)
-
--- NvimTREE --
-keymap("n", "<leader><leader>", ":NvimTreeToggle<CR>", opts)
-keymap("n", "<C-m>", ":NvimTreeFindFile<CR>", opts)
-
--- DiffView
-keymap("n", "<leader>do", ":DiffviewFileHistory<CR>", opts)
-keymap("n", "<leader>dc", ":DiffviewClose<CR>", opts)
-
--- Rest
-keymap("n", "<leader>r", "<Plug>RestNvim", opts)
+-- NOTE: plugin keymaps (fzf-lua, nvim-tree, diffview) now live in their
+-- lazy.nvim specs under lua/plugins/ via the `keys = { ... }` field, so they
+-- can lazy-load the plugin on first use.
