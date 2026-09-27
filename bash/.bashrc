@@ -135,7 +135,8 @@ ex ()
     echo "'$1' is not a valid file"
   fi
 }
-. /opt/asdf-vm/asdf.sh
+# asdf 0.16+ (Go rewrite): put shims on PATH; the old `asdf.sh` no longer exists
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
