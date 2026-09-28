@@ -22,7 +22,8 @@ return {
       ["<C-Space>"] = { "show", "fallback" },
       ["<C-e>"] = { "cancel", "fallback" },
       ["<CR>"] = { "accept", "fallback" },
-      ["<Tab>"] = { "select_next", "snippet_forward", "fallback" },
+      -- Tab accepts the highlighted item (the first one by default)
+      ["<Tab>"] = { "select_and_accept", "snippet_forward", "fallback" },
       ["<S-Tab>"] = { "select_prev", "snippet_backward", "fallback" },
     },
 
@@ -70,6 +71,15 @@ return {
 
     sources = {
       default = { "lsp", "snippets", "buffer", "path" },
+      -- Schema-aware table/column completion from the active dadbod connection
+      per_filetype = {
+        sql = { "dadbod", inherit_defaults = true },
+        mysql = { "dadbod", inherit_defaults = true },
+        plsql = { "dadbod", inherit_defaults = true },
+      },
+      providers = {
+        dadbod = { name = "DB", module = "vim_dadbod_completion.blink", score_offset = 10 },
+      },
     },
 
     fuzzy = { implementation = "prefer_rust_with_warning" },

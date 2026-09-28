@@ -1,8 +1,8 @@
 -- Parsers to install (kept from the old `ensure_installed`)
-local install_langs = { "c", "lua", "vim", "javascript", "css", "yaml", "json", "ruby", "html" }
+local install_langs = { "c", "lua", "vim", "javascript", "css", "yaml", "json", "ruby", "html", "sql" }
 -- Filetypes to actually start TS highlighting for. `c` is intentionally
 -- excluded to match the old `highlight.disable = { "c", "rust" }`.
-local highlight_fts = { "lua", "vim", "javascript", "css", "yaml", "json", "ruby", "html" }
+local highlight_fts = { "lua", "vim", "javascript", "css", "yaml", "json", "ruby", "html", "sql", "mysql", "plsql" }
 
 return {
   {

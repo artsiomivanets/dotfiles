@@ -21,6 +21,11 @@ return {
         markdown = { "prettier" },
         c = { "clang_format" },
         cpp = { "clang_format" },
+        sql = { "pg_format" },
+      },
+      formatters = {
+        -- Uppercase keywords, 2-space indent, no blank line after statements
+        pg_format = { prepend_args = { "--spaces", "2", "--keyword-case", "2", "--no-extra-line" } },
       },
       -- Format on save; fall back to LSP formatting when no formatter is set
       format_on_save = {

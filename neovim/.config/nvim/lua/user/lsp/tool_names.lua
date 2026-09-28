@@ -4,6 +4,7 @@ local servers = {
   "solargraph",
   "tailwindcss",
   "clangd",
+  "postgres_lsp",
 }
 
 local tools = {
@@ -11,6 +12,7 @@ local tools = {
   "prettier",
   "rubocop",
   "clang-format",
+  "pgformatter",
 }
 
 return {
