@@ -59,6 +59,14 @@ return {
       },
     },
 
+    cmdline = {
+      keymap = {
+        preset = "cmdline",
+        ["<Tab>"] = { "show_and_insert_or_accept_single", "select_and_accept" },
+        ["<S-Tab>"] = { "select_prev", "fallback" },
+      },
+    },
+
     completion = {
       documentation = { auto_show = true, auto_show_delay_ms = 200 },
       menu = {
