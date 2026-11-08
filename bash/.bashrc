@@ -151,3 +151,4 @@ source /usr/share/fzf/key-bindings.bash
 source /usr/share/fzf/completion.bash
 
 export EDITOR=nvim
+export WEB_CONCURRENCY=0
